@@ -1,37 +1,35 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Tabs } from 'expo-router'
+import Entypo from '@expo/vector-icons/Entypo';
+import { MaterialIcons } from '@expo/vector-icons';
+import {Colors} from './../../constants/Colors'
+import { AntDesign } from '@expo/vector-icons';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
+    <Tabs screenOptions={{
+        headerShown:false,
+        tabBarActiveTintColor:Colors.primary
+    }}>
+        <Tabs.Screen name='home' 
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+            tabBarLabel:"Home",
+            tabBarIcon:({color="skyblue"})=><Entypo name="home" size={24} color="skyblue" />
         }}
-      />
-      <Tabs.Screen
-        name="explore"
+        />
+        <Tabs.Screen name='explore'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+            tabBarLabel:"Explore",
+            tabBarIcon:({color="skyblue"})=><MaterialIcons name="explore" size={24} color="skyblue" />
         }}
-      />
+        />
+        <Tabs.Screen name='profile'
+        options={{
+            tabBarLabel:"Profile",
+            tabBarIcon:({color="skyblue"})=><AntDesign name="profile" size={24} color="skyblue" />
+        }}
+        />
     </Tabs>
-  );
+  )
 }
